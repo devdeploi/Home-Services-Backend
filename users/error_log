@@ -1,0 +1,84 @@
+[04-Nov-2024 12:58:51 Asia/Kolkata] PHP Notice:  Undefined index: user_name in /home/cxtidj073dao/public_html/generalservices/users/userFunction.php on line 103
+[04-Nov-2024 12:58:51 Asia/Kolkata] PHP Notice:  Undefined index: user_password in /home/cxtidj073dao/public_html/generalservices/users/userFunction.php on line 104
+[04-Nov-2024 12:58:51 Asia/Kolkata] PHP Notice:  Undefined index: mobile_no in /home/cxtidj073dao/public_html/generalservices/users/userFunction.php on line 105
+[04-Nov-2024 12:58:52 Asia/Kolkata] PHP Notice:  Undefined index: user_name in /home/cxtidj073dao/public_html/generalservices/users/userFunction.php on line 103
+[04-Nov-2024 12:58:52 Asia/Kolkata] PHP Notice:  Undefined index: user_password in /home/cxtidj073dao/public_html/generalservices/users/userFunction.php on line 104
+[04-Nov-2024 12:58:52 Asia/Kolkata] PHP Notice:  Undefined index: mobile_no in /home/cxtidj073dao/public_html/generalservices/users/userFunction.php on line 105
+[04-Nov-2024 23:01:12 Asia/Kolkata] PHP Notice:  Undefined index: user_name in /home/cxtidj073dao/public_html/generalservices/users/userFunction.php on line 103
+[04-Nov-2024 23:01:12 Asia/Kolkata] PHP Notice:  Undefined index: user_password in /home/cxtidj073dao/public_html/generalservices/users/userFunction.php on line 104
+[04-Nov-2024 23:01:12 Asia/Kolkata] PHP Notice:  Undefined index: mobile_no in /home/cxtidj073dao/public_html/generalservices/users/userFunction.php on line 105
+[05-Nov-2024 11:19:43 Asia/Kolkata] PHP Notice:  Undefined index: user_name in /home/cxtidj073dao/public_html/generalservices/users/userFunction.php on line 103
+[05-Nov-2024 11:19:43 Asia/Kolkata] PHP Notice:  Undefined index: user_password in /home/cxtidj073dao/public_html/generalservices/users/userFunction.php on line 104
+[05-Nov-2024 11:19:43 Asia/Kolkata] PHP Notice:  Undefined index: mobile_no in /home/cxtidj073dao/public_html/generalservices/users/userFunction.php on line 105
+[05-Nov-2024 11:55:42 Asia/Kolkata] PHP Notice:  Undefined index: mobile_no in /home/cxtidj073dao/public_html/generalservices/users/userFunction.php on line 105
+[05-Nov-2024 11:55:51 Asia/Kolkata] PHP Notice:  Undefined index: mobile_no in /home/cxtidj073dao/public_html/generalservices/users/userFunction.php on line 105
+[05-Nov-2024 11:56:22 Asia/Kolkata] PHP Notice:  Undefined index: mobile_no in /home/cxtidj073dao/public_html/generalservices/users/userFunction.php on line 105
+[05-Nov-2024 11:58:52 Asia/Kolkata] Mobile No: +919944507959
+[05-Nov-2024 11:58:52 Asia/Kolkata] OTP Code: 6839
+[05-Nov-2024 11:58:52 Asia/Kolkata] Stored OTP: 9439 | Entered OTP: 6839
+[05-Nov-2024 11:58:52 Asia/Kolkata] Verification Result: {"status":400,"message":"Invalid OTP"}
+[05-Nov-2024 12:01:23 Asia/Kolkata] Mobile No: +919998887767
+[05-Nov-2024 12:01:23 Asia/Kolkata] OTP Code: 4787
+[05-Nov-2024 12:01:23 Asia/Kolkata] Stored OTP: 4787 | Entered OTP: 4787
+[05-Nov-2024 12:01:23 Asia/Kolkata] Verification Result: {"status":200,"message":"OTP verified successfully"}
+[05-Nov-2024 18:57:22 Asia/Kolkata] Mobile No: +919944507959
+[05-Nov-2024 18:57:22 Asia/Kolkata] OTP Code: 5182
+[05-Nov-2024 18:57:22 Asia/Kolkata] Stored OTP: 5182 | Entered OTP: 5182
+[05-Nov-2024 18:57:22 Asia/Kolkata] Verification Result: {"status":200,"message":"OTP verified successfully"}
+[05-Nov-2024 21:57:39 Asia/Kolkata] Mobile No: +919944507959
+[05-Nov-2024 21:57:39 Asia/Kolkata] OTP Code: 1075
+[05-Nov-2024 21:57:39 Asia/Kolkata] Stored OTP: 1075 | Entered OTP: 1075
+[05-Nov-2024 21:57:39 Asia/Kolkata] Verification Result: {"status":200,"message":"OTP verified successfully"}
+[08-Nov-2024 23:06:47 Asia/Kolkata] PHP Warning:  include(dbcon.php): failed to open stream: No such file or directory in /home/cxtidj073dao/public_html/generalservices/users/sendOtp.php on line 10
+[08-Nov-2024 23:06:47 Asia/Kolkata] PHP Warning:  include(): Failed opening 'dbcon.php' for inclusion (include_path='.:/opt/alt/php74/usr/share/pear') in /home/cxtidj073dao/public_html/generalservices/users/sendOtp.php on line 10
+[08-Nov-2024 23:06:47 Asia/Kolkata] PHP Warning:  include(dbcon.php): failed to open stream: No such file or directory in /home/cxtidj073dao/public_html/generalservices/users/sendOtp.php on line 10
+[08-Nov-2024 23:06:47 Asia/Kolkata] PHP Warning:  include(): Failed opening 'dbcon.php' for inclusion (include_path='.:/opt/alt/php74/usr/share/pear') in /home/cxtidj073dao/public_html/generalservices/users/sendOtp.php on line 10
+[08-Nov-2024 23:08:03 Asia/Kolkata] Mobile No: +918825886008
+[08-Nov-2024 23:08:03 Asia/Kolkata] OTP Code: 9557
+[08-Nov-2024 23:08:03 Asia/Kolkata] Stored OTP: 9557 | Entered OTP: 9557
+[08-Nov-2024 23:08:03 Asia/Kolkata] Verification Result: {"status":200,"message":"OTP verified successfully"}
+[22-Nov-2024 16:22:52 Asia/Kolkata] Mobile No: [object Object]
+[22-Nov-2024 16:22:52 Asia/Kolkata] OTP Code: 1187
+[22-Nov-2024 16:22:52 Asia/Kolkata] PHP Notice:  Trying to access array offset on value of type null in /home/cxtidj073dao/public_html/generalservices/users/userFunction.php on line 217
+[22-Nov-2024 16:22:52 Asia/Kolkata] Stored OTP:  | Entered OTP: 1187
+[22-Nov-2024 16:22:52 Asia/Kolkata] Verification Result: {"status":404,"message":"Mobile number not found"}
+[22-Nov-2024 16:24:25 Asia/Kolkata] Mobile No: [object Object]
+[22-Nov-2024 16:24:25 Asia/Kolkata] OTP Code: 6666
+[22-Nov-2024 16:24:25 Asia/Kolkata] PHP Notice:  Trying to access array offset on value of type null in /home/cxtidj073dao/public_html/generalservices/users/userFunction.php on line 217
+[22-Nov-2024 16:24:25 Asia/Kolkata] Stored OTP:  | Entered OTP: 6666
+[22-Nov-2024 16:24:25 Asia/Kolkata] Verification Result: {"status":404,"message":"Mobile number not found"}
+[22-Nov-2024 16:31:25 Asia/Kolkata] Mobile No: [object Object]
+[22-Nov-2024 16:31:25 Asia/Kolkata] OTP Code: 2222
+[22-Nov-2024 16:31:25 Asia/Kolkata] PHP Notice:  Trying to access array offset on value of type null in /home/cxtidj073dao/public_html/generalservices/users/userFunction.php on line 217
+[22-Nov-2024 16:31:25 Asia/Kolkata] Stored OTP:  | Entered OTP: 2222
+[22-Nov-2024 16:31:25 Asia/Kolkata] Verification Result: {"status":404,"message":"Mobile number not found"}
+[28-Nov-2024 21:26:08 Asia/Kolkata] Mobile No: +919790244358
+[28-Nov-2024 21:26:08 Asia/Kolkata] OTP Code: 6523
+[28-Nov-2024 21:26:08 Asia/Kolkata] Stored OTP: 6523 | Entered OTP: 6523
+[28-Nov-2024 21:26:08 Asia/Kolkata] Verification Result: {"status":200,"message":"OTP verified successfully"}
+[28-Nov-2024 21:26:15 Asia/Kolkata] Mobile No: +919790244358
+[28-Nov-2024 21:26:15 Asia/Kolkata] OTP Code: 6523
+[28-Nov-2024 21:26:15 Asia/Kolkata] Stored OTP: 6523 | Entered OTP: 6523
+[28-Nov-2024 21:26:15 Asia/Kolkata] Verification Result: {"status":200,"message":"OTP verified successfully"}
+[28-Nov-2024 21:26:21 Asia/Kolkata] Mobile No: +919790244358
+[28-Nov-2024 21:26:21 Asia/Kolkata] OTP Code: 6523
+[28-Nov-2024 21:26:21 Asia/Kolkata] Stored OTP: 6523 | Entered OTP: 6523
+[28-Nov-2024 21:26:21 Asia/Kolkata] Verification Result: {"status":200,"message":"OTP verified successfully"}
+[28-Nov-2024 21:26:31 Asia/Kolkata] Mobile No: +919790244358
+[28-Nov-2024 21:26:31 Asia/Kolkata] OTP Code: 6523
+[28-Nov-2024 21:26:31 Asia/Kolkata] Stored OTP: 6523 | Entered OTP: 6523
+[28-Nov-2024 21:26:31 Asia/Kolkata] Verification Result: {"status":200,"message":"OTP verified successfully"}
+[30-Nov-2024 16:09:56 Asia/Kolkata] Executing query: UPDATE serv_user SET user_name = 'Mudassir', mobile_no = '+919790244358' WHERE user_id = '32'
+[30-Nov-2024 16:09:56 Asia/Kolkata] Affected rows: 0
+[30-Nov-2024 16:09:59 Asia/Kolkata] Executing query: UPDATE serv_user SET user_name = 'Mudassir', mobile_no = '+919790244358' WHERE user_id = '32'
+[30-Nov-2024 16:09:59 Asia/Kolkata] Affected rows: 0
+[30-Nov-2024 16:10:02 Asia/Kolkata] Executing query: UPDATE serv_user SET user_name = 'Mudassir', mobile_no = '+919790244358' WHERE user_id = '32'
+[30-Nov-2024 16:10:02 Asia/Kolkata] Affected rows: 0
+[30-Nov-2024 16:10:04 Asia/Kolkata] Executing query: UPDATE serv_user SET user_name = 'Mudassir', mobile_no = '+919790244358' WHERE user_id = '32'
+[30-Nov-2024 16:10:04 Asia/Kolkata] Affected rows: 0
+[30-Nov-2024 16:10:09 Asia/Kolkata] Executing query: UPDATE serv_user SET user_name = 'Mudassir', mobile_no = '+919790244358' WHERE user_id = '32'
+[30-Nov-2024 16:10:09 Asia/Kolkata] Affected rows: 0
+[30-Nov-2024 16:10:09 Asia/Kolkata] Executing query: UPDATE serv_user SET user_name = 'Mudassir', mobile_no = '+919790244358' WHERE user_id = '32'
+[30-Nov-2024 16:10:09 Asia/Kolkata] Affected rows: 0
+[30-Nov-2024 16:10:11 Asia/Kolkata] Executing query: UPDATE serv_user SET user_name = 'Mudassir', mobile_no = '+919790244358' WHERE user_id = '32'
+[30-Nov-2024 16:10:11 Asia/Kolkata] Affected rows: 0

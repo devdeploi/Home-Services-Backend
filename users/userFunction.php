@@ -2,24 +2,25 @@
 include '../inc/dbcon.php';
 // require '../vendor/autoload.php';  // Ensure the Twilio SDK is loaded
 use Twilio\Rest\Client;
-require __DIR__ . '/../vendor/autoload.php'; 
+require __DIR__ . '/../vendor/autoload.php';
 date_default_timezone_set('Asia/Kolkata');
 
 
 
 
-function getUserList(){
+function getUserList()
+{
     global $conn;
 
     $sql = "SELECT * FROM serv_user";
     $query_run = mysqli_query($conn, $sql);
-    
-    if($query_run){
 
-        if(mysqli_num_rows($query_run) > 0){
+    if ($query_run) {
+
+        if (mysqli_num_rows($query_run) > 0) {
 
             $res = [];
-            while($row = mysqli_fetch_assoc($query_run)) {
+            while ($row = mysqli_fetch_assoc($query_run)) {
                 $res[] = $row;
             }
 
@@ -32,31 +33,30 @@ function getUserList(){
             ];
             header("HTTP/1.0 200 Success");
             echo json_encode($data);
-        
 
-        }else{
+
+        } else {
             $data = [
                 'status' => 404,
                 'message' => "No Users Found",
             ];
             header("HTTP/1.0 404 No Users Found");
             echo json_encode($data);
-            }
+        }
 
-    }
-    else
-    {
+    } else {
         $data = [
             'status' => 500,
             'message' => "Internal Server Error",
         ];
         header("HTTP/1.0 500 Internal Server Error");
         echo json_encode($data);
-    
+
     }
 }
 //getUserById
-function getUserById($userId) {
+function getUserById($userId)
+{
     global $conn;
 
     // Sanitize the user ID to prevent SQL Injection
@@ -64,7 +64,7 @@ function getUserById($userId) {
 
     $sql = "SELECT * FROM serv_user WHERE user_id = '$userId'";
     $query_run = mysqli_query($conn, $sql);
-    
+
     if ($query_run) {
         if (mysqli_num_rows($query_run) > 0) {
             $res = mysqli_fetch_assoc($query_run);
@@ -95,8 +95,9 @@ function getUserById($userId) {
 
 
 //CreateUser
-function createUser($input) {
-    
+function createUser($input)
+{
+
     global $conn;
 
     // Input data
@@ -122,38 +123,38 @@ function createUser($input) {
         ];
         return json_encode($data);
     }
-    
+
 
     // Insert the new user
     $sql = "INSERT INTO serv_user (user_name, user_password, mobile_no, role, otp_code, expiration_time, is_verified, created_at, modified_at) 
             VALUES ('$user_name', '$user_password', '$mobile_no', '$role','$otp_code', '$expiration_time', 0, NOW(), NOW())";
-    
+
     $query_run = mysqli_query($conn, $sql);
 
     if ($query_run) {
         // Send OTP after user creation
         $messageSid = sendOtp($mobile_no, $otp_code);
         if ($messageSid) {
-        // User created, OTP is sent
-        $data = [
-            'status' => 201,
-            'message' => "User created successfully. OTP sent to $mobile_no",
-            'otp_code' => $otp_code,  
-            'message_sid' => $messageSid,
-            'role' => $role
-        ];
-        header("HTTP/1.0 201 Created");
+            // User created, OTP is sent
+            $data = [
+                'status' => 201,
+                'message' => "User created successfully. OTP sent to $mobile_no",
+                'otp_code' => $otp_code,
+                'message_sid' => $messageSid,
+                'role' => $role
+            ];
+            header("HTTP/1.0 201 Created");
+            return json_encode($data);
+        } else {
+            // OTP failed to send
+            $data = [
+                // 'status' => 500,
+                'status' => 200,
+                'message' => "User created, but failed to send OTP",
+                'role' => $role
+            ];
+        }
         return json_encode($data);
-    }else{
-        // OTP failed to send
-        $data = [
-            // 'status' => 500,
-            'status' => 200,
-            'message' => "User created, but failed to send OTP",
-            'role' => $role
-        ];
-    }
-    return json_encode($data);
     } else {
         $data = [
             'status' => 500,
@@ -163,7 +164,8 @@ function createUser($input) {
     }
 }
 // Function to send OTP
-function sendOtp($mobile_no, $otp) {
+function sendOtp($mobile_no, $otp)
+{
 
     global $conn;
     $created_at = date('Y-m-d H:i:s');
@@ -173,37 +175,38 @@ function sendOtp($mobile_no, $otp) {
     // Update OTP and expiration time in the database
     $sql = "UPDATE serv_user SET otp_code = '$otp', expiration_time = '$expiration_time', created_at='$created_at' WHERE mobile_no = '$mobile_no'";
 
-    
+
     if (mysqli_query($conn, $sql)) {
-    // $account_sid = 'ACccff51d8341c4a67233be225c273e54c';
-    // $auth_token = 'db6d26653797e6abd7cabd6ef1e25609';
-    // $twilio_number = '+12495460816';    
-    
-    $account_sid = 'ACf925523fa759276503aa19b35e709fb4';
-    $auth_token = '270537a1956b026ca28884c54705d6c8';
-    $twilio_number = '+19787880275';    
+        // $account_sid = 'ACccff51d8341c4a67233be225c273e54c';
+        // $auth_token = 'db6d26653797e6abd7cabd6ef1e25609';
+        // $twilio_number = '+12495460816';    
 
-    $twilio = new Client($account_sid, $auth_token);
+        $account_sid = 'ACcd98edb79c4f55e783ac7450b654fe33';
+        $auth_token = 'ec1be133a4ee1b2d9b77e53f7a1699d0';
+        $twilio_number = '+16184812732';
 
-    try {
-        $message = $twilio->messages->create(
-            $mobile_no,
-            [
-                'from' => $twilio_number, // From (your Twilio number)
-                'body' => "Your OTP from General-Service : $otp"
-            ]
-        );
-        return $message->sid;
-    } catch (Exception $e) {
-        // return false;
-        echo "Error: " . $e->getMessage();
-        return false;
+        $twilio = new Client($account_sid, $auth_token);
+
+        try {
+            $message = $twilio->messages->create(
+                $mobile_no,
+                [
+                    'from' => $twilio_number, // From (your Twilio number)
+                    'body' => "Your OTP from General-Service : $otp"
+                ]
+            );
+            return $message->sid;
+        } catch (Exception $e) {
+            // return false;
+            echo "Error: " . $e->getMessage();
+            return false;
+        }
     }
 }
-}
 
 
-function verifyOtp($mobile_no, $otp_code) {
+function verifyOtp($mobile_no, $otp_code)
+{
     global $conn;
     $expiration_time = date('Y-m-d H:i:s', strtotime('+15 minutes'));
     // Fetch OTP and expiration time for the user
@@ -211,9 +214,9 @@ function verifyOtp($mobile_no, $otp_code) {
     // $query = "SELECT otp_code, expiration_time FROM serv_user WHERE mobile_no = '$mobile_no' AND otp_code = '$otp_code'";
     $result = mysqli_query($conn, $query);
     $user = mysqli_fetch_assoc($result);
-  error_log("Mobile No: " . $mobile_no);
+    error_log("Mobile No: " . $mobile_no);
     error_log("OTP Code: " . $otp_code);
-    
+
     error_log("Stored OTP: " . $user['otp_code'] . " | Entered OTP: " . $otp_code);
 
 
@@ -226,7 +229,7 @@ function verifyOtp($mobile_no, $otp_code) {
                 // OTP is valid, proceed with verification
                 $update = "UPDATE serv_user SET is_verified = 1 WHERE mobile_no = '$mobile_no'";
                 mysqli_query($conn, $update);
-                http_response_code(200);  
+                http_response_code(200);
                 $data = [
                     'status' => 200,
                     'message' => "OTP verified successfully"
@@ -265,7 +268,8 @@ function verifyOtp($mobile_no, $otp_code) {
 }
 
 
-function resendOtp($mobile_no) {
+function resendOtp($mobile_no)
+{
     global $conn;
 
     $newOtp = rand(1000, 9999);
@@ -282,10 +286,11 @@ function resendOtp($mobile_no) {
 }
 
 
-function updateUser($inputData) {
+function updateUser($inputData)
+{
     global $conn;
 
-    
+
     if (empty($inputData['user_id']) || empty($inputData['user_name']) || empty($inputData['mobile_no'])) {
         return json_encode([
             'status' => 400,
@@ -296,11 +301,11 @@ function updateUser($inputData) {
     $user_id = mysqli_real_escape_string($conn, $inputData['user_id']);
     $user_name = mysqli_real_escape_string($conn, $inputData['user_name']);
     $mobile_no = mysqli_real_escape_string($conn, $inputData['mobile_no']);
-    
+
     // Prepare SQL update statement
     $sql = "UPDATE serv_user SET user_name = '$user_name', mobile_no = '$mobile_no' WHERE user_id = '$user_id'";
-    error_log("Executing query: $sql"); 
-    
+    error_log("Executing query: $sql");
+
     if (mysqli_query($conn, $sql)) {
         $affected_rows = mysqli_affected_rows($conn);
         error_log("Affected rows: $affected_rows");
@@ -336,15 +341,192 @@ function updateUser($inputData) {
         ]);
     }
 }
+
+
+// Request OTP for Password Reset
+function requestResetOtp($input)
+{
+    global $conn;
+
+    $mobile_no = mysqli_real_escape_string($conn, $input['mobile_no']);
+
+    // Check if user exists
+    $check_user = "SELECT * FROM serv_user WHERE mobile_no = '$mobile_no'";
+    $check_run = mysqli_query($conn, $check_user);
+
+    if (mysqli_num_rows($check_run) > 0) {
+        $otp_code = rand(1000, 9999);
+        $expiration_time = date('Y-m-d H:i:s', strtotime('+15 minutes'));
+        $modified_at = date('Y-m-d H:i:s');
+
+        // Update OTP, expiration time, and modified_at
+// IMPORTANT: Do NOT update created_at as it resets registration date
+        $update_sql = "UPDATE serv_user SET otp_code = '$otp_code', expiration_time = '$expiration_time', modified_at =
+'$modified_at' WHERE mobile_no = '$mobile_no'";
+
+        if (mysqli_query($conn, $update_sql)) {
+            // Send OTP via Twilio
+// Reusing existing credentials/logic from sendOtp, but calling here directly or refactoring sendOtp to be more generic
+// would be better.
+// For now, I'll direct call sendOtp logic or reuse the function if it doesn't do unwanted side effects.
+// Existing sendOtp updates DB again provided mobile_no!
+// Only sendOtp relies on DB update inside it? Yes.
+// "function sendOtp($mobile_no, $otp)" inside it updates DB with created_at.
+// So I should NOT use sendOtp() function directly if I want to avoid created_at update.
+// I will copy the Twilio sending part only.
+
+            $account_sid = 'ACcd98edb79c4f55e783ac7450b654fe33';
+            $auth_token = 'ec1be133a4ee1b2d9b77e53f7a1699d0';
+            $twilio_number = '+16184812732';
+
+            $twilio = new Client($account_sid, $auth_token);
+
+            try {
+                $message = $twilio->messages->create(
+                    $mobile_no,
+                    [
+                        'from' => $twilio_number,
+                        'body' => "Your Password Reset OTP for General-Service is: $otp_code"
+                    ]
+                );
+
+                $data = [
+                    'status' => 200,
+                    'message' => "OTP sent successfully to $mobile_no",
+                    // 'otp_code' => $otp_code // Remove in production
+                ];
+                return json_encode($data);
+
+            } catch (Exception $e) {
+                $data = [
+                    'status' => 500,
+                    'message' => "Failed to send OTP: " . $e->getMessage()
+                ];
+                return json_encode($data);
+            }
+        } else {
+            $data = [
+                'status' => 500,
+                'message' => "Database error: Unable to generate OTP"
+            ];
+            return json_encode($data);
+        }
+
+    } else {
+        $data = [
+            'status' => 404,
+            'message' => "Mobile number not found"
+        ];
+        return json_encode($data);
+    }
+}
+
+// Verify OTP for Password Reset
+function verifyResetOtp($input)
+{
+    global $conn;
+
+    $mobile_no = mysqli_real_escape_string($conn, $input['mobile_no']);
+    $otp_code = mysqli_real_escape_string($conn, $input['otp_code']);
+
+    $query = "SELECT otp_code, expiration_time FROM serv_user WHERE mobile_no = '$mobile_no'";
+    $result = mysqli_query($conn, $query);
+
+    if (mysqli_num_rows($result) > 0) {
+        $user = mysqli_fetch_assoc($result);
+
+        if ($user['otp_code'] == $otp_code) {
+            $current_time = date('Y-m-d H:i:s');
+            if ($current_time <= $user['expiration_time']) {
+                $data = [
+                    'status' => 200,
+                    'message' => "OTP verified successfully"
+                ];
+                return json_encode($data);
+            } else {
+                $data = [
+                    'status' => 400,
+                    'message' => "OTP expired"
+                ];
+                return json_encode($data);
+            }
+        } else {
+            $data = [
+                'status' => 400,
+                'message' => "Invalid OTP"
+            ];
+            return json_encode($data);
+        }
+    } else {
+        $data = [
+            'status' => 404,
+            'message' => "Mobile number not found"
+        ];
+        return json_encode($data);
+    }
+}
+
+// Reset Password
+function resetPassword($input)
+{
+    global $conn;
+
+    $mobile_no = mysqli_real_escape_string($conn, $input['mobile_no']);
+    $otp_code = mysqli_real_escape_string($conn, $input['otp_code']);
+    $new_password = mysqli_real_escape_string($conn, $input['new_password']);
+
+    // Re-verify OTP to ensure security (stateless verification)
+    $query = "SELECT otp_code, expiration_time FROM serv_user WHERE mobile_no = '$mobile_no'";
+    $result = mysqli_query($conn, $query);
+
+    if (mysqli_num_rows($result) > 0) {
+        $user = mysqli_fetch_assoc($result);
+
+        if ($user['otp_code'] == $otp_code) {
+            $current_time = date('Y-m-d H:i:s');
+            if ($current_time <= $user['expiration_time']) {
+
+                // Hash new password
+                $hashed_password = password_hash($new_password, PASSWORD_BCRYPT);
+                $modified_at = date('Y-m-d H:i:s');
+
+                // Update password and clear OTP to prevent reuse
+                $update_sql = "UPDATE serv_user SET user_password = '$hashed_password', otp_code = NULL, modified_at = '$modified_at' WHERE mobile_no = '$mobile_no'";
+
+                if (mysqli_query($conn, $update_sql)) {
+                    $data = [
+                        'status' => 200,
+                        'message' => "Password reset successfully"
+                    ];
+                    return json_encode($data);
+                } else {
+                    $data = [
+                        'status' => 500,
+                        'message' => "Failed to update password"
+                    ];
+                    return json_encode($data);
+                }
+
+            } else {
+                $data = [
+                    'status' => 400,
+                    'message' => "OTP expired"
+                ];
+                return json_encode($data);
+            }
+        } else {
+            $data = [
+                'status' => 400,
+                'message' => "Invalid OTP"
+            ];
+            return json_encode($data);
+        }
+    } else {
+        $data = [
+            'status' => 404,
+            'message' => "Mobile number not found"
+        ];
+        return json_encode($data);
+    }
+}
 ?>
-
-
-
-
-
-
-
-
-
-
-
